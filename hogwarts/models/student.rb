@@ -35,6 +35,14 @@ class Student
     return "#{@first_name} #{@last_name}"
   end
 
+  def find_house()
+    sql = "SELECT * FROM houses WHERE id = $1"
+    values = [@house_id]
+    house_data = SqlRunner.run(sql, values)[0]
+    result = House.new(house_data)
+    return result.name
+  end
+
   def self.delete_all()
     sql = "DELETE FROM students"
     SqlRunner.run(sql)
