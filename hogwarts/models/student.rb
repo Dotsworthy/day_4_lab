@@ -9,7 +9,7 @@ class Student
     @id = options['id'].to_i
     @first_name = options['first_name']
     @last_name = options['last_name']
-    @house_id = options['house_id'].to_i
+    @house_id = options['house_id']
     @age = options['age'].to_i
   end
 
@@ -43,8 +43,8 @@ class Student
   def self.all()
     sql = "SELECT * FROM students"
     students = SqlRunner.run (sql)
-    student = students.map{|student| Student.new(student)}
-    return student
+    result = students.map{|student| Student.new(student)}
+    return result
   end
 
   def self.find(id)
